@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FinTrack Pro — Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+  <div class="start-div" id="start-div">
+    <div class="start-box">
+      <h2>Welcome to FinTrack Pro</h2>
+      <p>Enter your name to start tracking your finances.</p>
+      <input type="text" id="user-name" placeholder="Your name" autocomplete="off" />
+      <button id="start-btn">Continue</button>
+    </div>
+  </div>
+
+  <div class="app">
+    <aside class="sidebar">
+      <div class="logo">
+        <i class="ri-stack-line"></i>
+        <div>
+          <h1>FinTrack Pro</h1>
+          <p>Enterprise Finance</p>
+        </div>
+      </div>
+      <nav class="nav">
+        <a href="index.html" class="nav-link active"><i class="ri-grid-fill"></i> Dashboard</a>
+        <a href="settings.html" class="nav-link"><i class="ri-settings-3-line"></i> Settings</a>
+      </nav>
+      <button class="add-transaction-btn" id="open-modal-btn">
+        <i class="ri-add-line"></i> Add Transaction
+      </button>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <span class="user-name" id="user-name-display"></span>
+      </header>
+
+      <section class="content">
+        <div class="page-heading">
+          <h2>Financial Overview</h2>
+          <p>Real-time tracking application</p>
+        </div>
+
+        <div class="summary-cards">
+          <div class="summary-card">
+            <div class="icon-box blue"><i class="ri-bank-line"></i></div>
+            <p class="label">Current Balance</p>
+            <h3 id="balance-value">$0.00</h3>
+          </div>
+          <div class="summary-card">
+            <div class="icon-box green"><i class="ri-arrow-right-up-line"></i></div>
+            <p class="label">Total Income</p>
+            <h3 class="income" id="income-value">$0.00</h3>
+          </div>
+          <div class="summary-card">
+            <div class="icon-box red"><i class="ri-arrow-right-down-line"></i></div>
+            <p class="label">Total Expense</p>
+            <h3 class="expense" id="expense-value">$0.00</h3>
+          </div>
+          <div class="summary-card">
+            <div class="icon-box blue"><i class="ri-safe-2-line"></i></div>
+            <p class="label">Total Transactions</p>
+            <h3 id="total-count">0</h3>
+          </div>
+        </div>
+
+        <div class="grid-2col">
+          <div class="card">
+            <h3>Cash Flow Analysis</h3>
+            <div class="legend">
+              <span><i class="dot income"></i> Income</span>
+              <span><i class="dot expense"></i> Expenses</span>
+            </div>
+            <div class="chart-wrap">
+              <canvas id="cash-flow-chart"></canvas>
+            </div>
+            <p class="chart-caption">Income vs Expenses</p>
+          </div>
+
+          <div class="card">
+            <h3>Preferences</h3>
+            <div class="pref-row">
+              <span>Dark Mode</span>
+              <label class="switch">
+                <input type="checkbox" id="theme-toggle" />
+                <span class="slider"></span>
+              </label>
+            </div>
+            <hr />
+            <button class="reset-btn" id="reset-data-btn">
+              <i class="ri-delete-bin-6-line"></i> Reset All Data
+            </button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>All Transactions</h3>
+          <div class="table-controls">
+            <div class="search-box">
+              <i class="ri-search-line"></i>
+              <input type="text" id="search-input" placeholder="Search transactions..." />
+            </div>
+            <select id="filter-type">
+              <option value="all">All Types</option>
+              <option value="income">Income</option>
+              <option value="expense">Expense</option>
+            </select>
+          </div>
+
+          <div class="table-wrapper" id="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Description</th>
+                  <th>Category</th>
+                  <th>Amount</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="transactions-body"></tbody>
+            </table>
+          </div>
+
+          <div class="empty-state" id="empty-state" style="display:none;">
+            <i class="ri-inbox-line"></i>
+            <h3>No transactions yet</h3>
+            <p>Add your first transaction to see it here.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal-overlay" id="transaction-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Add Transaction</h3>
+        <button class="close-modal" id="close-modal-btn"><i class="ri-close-line"></i></button>
+      </div>
+      <form id="transaction-form">
+        <label>Description
+          <input type="text" id="t-description" placeholder="e.g. Grocery shopping" required />
+        </label>
+        <div class="form-row">
+          <label>Amount
+            <input type="number" id="t-amount" step="0.01" min="0.01" placeholder="0.00" required />
+          </label>
+          <label>Type
+            <select id="t-type">
+              <option value="income">Income</option>
+              <option value="expense">Expense</option>
+            </select>
+          </label>
+        </div>
+        <div class="form-row">
+          <label>Category
+            <input type="text" id="t-category" placeholder="e.g. Salary, Food" required />
+          </label>
+          <label>Date
+            <input type="date" id="t-date" required />
+          </label>
+        </div>
+        <button type="submit" class="submit-btn">Add Transaction</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

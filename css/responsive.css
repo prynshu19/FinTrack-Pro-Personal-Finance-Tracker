@@ -1,0 +1,57 @@
+@media (min-width: 768px) {
+  .app {
+    flex-direction: row;
+  }
+
+  .sidebar {
+    width: 26rem;
+    flex-shrink: 0;
+    border-bottom: none;
+    border-right: 1px solid var(--border-clr);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    position: sticky;
+    top: 0;
+  }
+
+  .nav {
+    flex-direction: column;
+    overflow-x: visible;
+    flex: 1;
+  }
+
+  .add-transaction-btn {
+    margin-top: auto;
+  }
+
+  .main {
+    min-width: 0;
+  }
+
+  .summary-cards {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .grid-2col {
+    grid-template-columns: 2fr 1fr;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .table-controls {
+    flex-direction: row;
+  }
+
+  #filter-type {
+    width: 16rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .content {
+    max-width: 130rem;
+  }
+}
