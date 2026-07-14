@@ -182,6 +182,7 @@ body {
   border-bottom: 1px solid var(--border-clr);
   background: var(--bg-white);
   font-weight: 500;
+  font-size: 2rem;
 }
 
 .content {

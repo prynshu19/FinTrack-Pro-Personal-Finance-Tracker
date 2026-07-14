@@ -57,7 +57,7 @@ if (themeToggle) {
 }
 
 function refreshUserNameDisplay() {
-  if (userNameDisplay) userNameDisplay.innerText = userName || "";
+  if (userNameDisplay) userNameDisplay.innerText = `Welcome ${userName}` || "";
 }
 
 function showGateIfNeeded() {
